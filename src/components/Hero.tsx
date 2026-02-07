@@ -47,14 +47,15 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
           >
-            <motion.p
-              className="text-primary font-mono text-sm mb-4 tracking-wider"
+            <motion.div
+              className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-primary/40 bg-primary/5 mb-4 font-mono text-sm text-primary"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              &lt; Hello World /&gt;
-            </motion.p>
+              <span className="text-primary">❯_</span>
+              <span>&lt;hello world /&gt;</span>
+            </motion.div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-4">
               Hi, I'm{" "}
               <span className="text-gradient glow-text">Ujjawal Gupta</span>
