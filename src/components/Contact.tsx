@@ -1,22 +1,40 @@
 import { motion } from "framer-motion";
-import { Mail, Linkedin, Github, Twitter, Instagram, Send } from "lucide-react";
-import { useState, FormEvent } from "react";
+import { Mail, Linkedin, Github, Twitter, Instagram, Send, Loader2 } from "lucide-react";
+import { useState, useRef, FormEvent } from "react";
+import emailjs from "@emailjs/browser";
+import { toast } from "sonner";
 
 const socials = [
   { icon: Mail, label: "Email", href: "mailto:ujjawal.gupta.jsr@gmail.com", text: "ujjawal.gupta.jsr@gmail.com" },
-  { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com", text: "LinkedIn" },
-  { icon: Github, label: "GitHub", href: "https://github.com", text: "GitHub" },
-  { icon: Twitter, label: "Twitter (X)", href: "https://x.com", text: "Twitter" },
-  { icon: Instagram, label: "Instagram", href: "https://instagram.com", text: "Instagram" },
+  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/ujjawal-gupta-504819381/", text: "LinkedIn" },
+  { icon: Github, label: "GitHub", href: "https://github.com/amujjawalgupta", text: "GitHub" },
+  { icon: Twitter, label: "Twitter (X)", href: "https://x.com/ujjawalgupta12s", text: "Twitter" },
+  { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/amujjawalgupta", text: "Instagram" },
 ];
 
-const Contact = () => {
-  const [submitted, setSubmitted] = useState(false);
+const SERVICE_ID = "service_iqcgsvn";
+const TEMPLATE_ID = "template_fn2o1ba";
+const PUBLIC_KEY = "fqIDoAIXDftdN_xir";
 
-  const handleSubmit = (e: FormEvent) => {
+const Contact = () => {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [sending, setSending] = useState(false);
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    if (!formRef.current) return;
+
+    setSending(true);
+    try {
+      await emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, PUBLIC_KEY);
+      toast.success("Message sent successfully!");
+      formRef.current.reset();
+    } catch (err) {
+      console.error("EmailJS error:", err);
+      toast.error("Failed to send message. Please try again.");
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -73,30 +91,39 @@ const Contact = () => {
             transition={{ duration: 0.6 }}
           >
             <h3 className="text-lg font-semibold text-foreground mb-6">Send a message</h3>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
               <input
                 type="text"
+                name="from_name"
                 placeholder="Your Name"
                 required
+                maxLength={100}
                 className="w-full px-4 py-3 bg-card border border-border rounded-xl text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
               />
               <input
                 type="email"
+                name="from_email"
                 placeholder="Your Email"
                 required
+                maxLength={255}
                 className="w-full px-4 py-3 bg-card border border-border rounded-xl text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
               />
               <textarea
+                name="message"
                 placeholder="Your Message"
                 rows={5}
                 required
+                maxLength={1000}
                 className="w-full px-4 py-3 bg-card border border-border rounded-xl text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors resize-none"
               />
               <button
                 type="submit"
-                className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-xl font-medium hover:opacity-90 transition-all w-full justify-center"
+                disabled={sending}
+                className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-xl font-medium hover:opacity-90 transition-all w-full justify-center disabled:opacity-60"
               >
-                {submitted ? "Message Sent! ✓" : (
+                {sending ? (
+                  <><Loader2 className="w-4 h-4 animate-spin" /> Sending...</>
+                ) : (
                   <>Send Message <Send className="w-4 h-4" /></>
                 )}
               </button>
