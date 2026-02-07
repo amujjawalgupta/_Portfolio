@@ -24,8 +24,10 @@ const projects = [
 
 const Projects = () => {
   return (
-    <section id="projects" className="py-24 relative">
-      <div className="container mx-auto px-4">
+    <section id="projects" className="py-24 relative bg-secondary/30">
+      <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background opacity-50" />
+      <div className="absolute inset-0 grid-pattern opacity-8" />
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

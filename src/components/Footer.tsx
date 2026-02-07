@@ -1,7 +1,7 @@
 import { Shield } from "lucide-react";
 
 const Footer = () => (
-  <footer className="border-t border-border py-8">
+  <footer className="border-t border-border py-8 bg-card/60">
     <div className="container mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
       <div className="flex items-center gap-2 text-sm text-muted-foreground">
         <Shield className="w-4 h-4 text-primary" />
