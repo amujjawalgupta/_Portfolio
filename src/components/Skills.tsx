@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Code2, Server, ShieldCheck, Brain } from "lucide-react";
+import ScrollDownIndicator from "./ScrollDownIndicator";
 
 const skillCategories = [
   {
@@ -102,6 +103,7 @@ const Skills = () => {
             </motion.div>
           ))}
         </div>
+        <ScrollDownIndicator targetId="projects" />
       </div>
     </section>
   );

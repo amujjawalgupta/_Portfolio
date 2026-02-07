@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
-import { ArrowDown, ExternalLink, Shield, Terminal, Code2 } from "lucide-react";
+import { ExternalLink, Shield, Terminal, Code2 } from "lucide-react";
 import profileImg from "@/assets/profile.jpg";
 import heroBg from "@/assets/hero-bg.jpg";
+import ScrollDownIndicator from "./ScrollDownIndicator";
 
 const floatingIcons = [
   { icon: Shield, x: "10%", y: "20%", delay: 0, size: 20 },
@@ -128,14 +129,9 @@ const Hero = () => {
           </motion.div>
         </div>
 
-        {/* Scroll indicator */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 2 }}
-        >
-          <ArrowDown className="w-5 h-5 text-muted-foreground" />
-        </motion.div>
+        <div className="mt-12">
+          <ScrollDownIndicator targetId="about" />
+        </div>
       </div>
     </section>
   );

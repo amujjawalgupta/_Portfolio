@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Github, Lock, Wifi, Database } from "lucide-react";
+import ScrollDownIndicator from "./ScrollDownIndicator";
 
 const projects = [
   {
@@ -84,6 +85,7 @@ const Projects = () => {
             </motion.div>
           ))}
         </div>
+        <ScrollDownIndicator targetId="services" />
       </div>
     </section>
   );
