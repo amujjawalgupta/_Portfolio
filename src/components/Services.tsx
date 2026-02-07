@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Server, ShieldAlert, Search } from "lucide-react";
+import ScrollDownIndicator from "./ScrollDownIndicator";
 
 const services = [
   {
@@ -72,6 +73,7 @@ const Services = () => {
         >
           ⚠ Currently focused on learning, practice, and academic projects.
         </motion.p>
+        <ScrollDownIndicator targetId="contact" />
       </div>
     </section>
   );

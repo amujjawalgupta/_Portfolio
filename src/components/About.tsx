@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { GraduationCap, Target, BookOpen } from "lucide-react";
+import ScrollDownIndicator from "./ScrollDownIndicator";
 
 const About = () => {
   return (
@@ -103,6 +104,7 @@ const About = () => {
             </div>
           </motion.div>
         </div>
+        <ScrollDownIndicator targetId="skills" />
       </div>
     </section>
   );
