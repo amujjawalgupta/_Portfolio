@@ -46,8 +46,9 @@ const skillCategories = [
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-24 relative">
-      <div className="absolute inset-0 grid-pattern opacity-10" />
+    <section id="skills" className="py-24 relative bg-card/50">
+      <div className="absolute inset-0 grid-pattern opacity-15" />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5" />
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

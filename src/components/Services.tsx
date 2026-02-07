@@ -24,8 +24,9 @@ const services = [
 
 const Services = () => {
   return (
-    <section id="services" className="py-24 relative">
-      <div className="absolute inset-0 grid-pattern opacity-10" />
+    <section id="services" className="py-24 relative bg-card/40">
+      <div className="absolute inset-0 grid-pattern opacity-15" />
+      <div className="absolute inset-0 bg-gradient-to-bl from-primary/5 via-transparent to-primary/5" />
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

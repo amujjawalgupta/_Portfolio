@@ -3,8 +3,10 @@ import { GraduationCap, Target, BookOpen } from "lucide-react";
 
 const About = () => {
   return (
-    <section id="about" className="py-24 relative">
-      <div className="container mx-auto px-4">
+    <section id="about" className="py-24 relative bg-secondary/40">
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background opacity-60" />
+      <div className="absolute inset-0 grid-pattern opacity-5" />
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
