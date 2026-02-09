@@ -144,20 +144,6 @@ const Hero = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
               </motion.div>
 
-              {/* Available for hire badge */}
-              <motion.div
-                className="absolute -bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-1.5 rounded-full bg-card/90 border border-border backdrop-blur-sm group-hover:border-primary/50 transition-all duration-500"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8, duration: 0.5 }}
-              >
-                <motion.span
-                  className="w-2.5 h-2.5 rounded-full bg-green-500"
-                  animate={{ scale: [1, 1.3, 1], opacity: [1, 0.6, 1] }}
-                  transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-                />
-                <span className="font-mono text-xs text-foreground tracking-wide">Available for hire</span>
-              </motion.div>
             </div>
           </motion.div>
         </div>
