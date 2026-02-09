@@ -103,55 +103,60 @@ const Hero = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.2 }}
           >
-            <div className="relative group cursor-pointer">
-              {/* Outer rotating ring */}
+            <div className="relative group cursor-pointer flex flex-col items-center">
+              {/* Outer thick ring with glow */}
+              <div className="absolute -inset-6 rounded-full border-[3px] border-primary/40 group-hover:border-primary/70 transition-all duration-700 shadow-[0_0_25px_hsl(var(--primary)/0.15)] group-hover:shadow-[0_0_40px_hsl(var(--primary)/0.3)]" />
+
+              {/* Tech accent lines - top */}
               <motion.div
-                className="absolute -inset-4 rounded-full border-2 border-dashed border-primary/20 group-hover:border-primary/50 transition-colors duration-700"
-                animate={{ rotate: 360 }}
-                transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
+                className="absolute -top-8 left-1/2 -translate-x-1/2 w-16 h-[2px] bg-gradient-to-r from-transparent via-primary/50 to-transparent"
+                animate={{ opacity: [0.3, 0.8, 0.3] }}
+                transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
               />
-              {/* Inner counter-rotating ring */}
+
+              {/* Inner ring */}
+              <div className="absolute -inset-2 rounded-full border border-primary/20 group-hover:border-primary/40 transition-all duration-700" />
+
+              {/* Glow pulse behind image */}
               <motion.div
-                className="absolute -inset-1.5 rounded-full border border-dashed border-primary/15 group-hover:border-primary/40 transition-colors duration-700"
-                animate={{ rotate: -360 }}
-                transition={{ repeat: Infinity, duration: 18, ease: "linear" }}
-              />
-              {/* Glow pulse */}
-              <motion.div
-                className="absolute -inset-2 rounded-full bg-primary/0 group-hover:bg-primary/15 blur-2xl transition-all duration-700"
-                animate={{ scale: [1, 1.05, 1], opacity: [0.3, 0.6, 0.3] }}
+                className="absolute -inset-3 rounded-full bg-primary/5 group-hover:bg-primary/10 blur-2xl transition-all duration-700"
+                animate={{ scale: [1, 1.04, 1], opacity: [0.4, 0.7, 0.4] }}
                 transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
               />
 
               <motion.div
-                className="w-64 h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden border-2 border-primary/30 group-hover:border-primary/80 transition-all duration-700 relative"
-                whileHover={{ scale: 1.06, rotate: 2 }}
+                className="w-64 h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden border-2 border-primary/30 group-hover:border-primary/70 transition-all duration-700 relative"
+                whileHover={{ scale: 1.03 }}
                 transition={{ type: "spring", stiffness: 200, damping: 15 }}
               >
                 <img
                   src={profileImg}
                   alt="Ujjawal Gupta"
-                  className="w-full h-full object-cover group-hover:scale-115 transition-transform duration-1000 ease-out"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 ease-out"
                 />
                 {/* Scanline effect on hover */}
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/8 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                   animate={{ y: ["-100%", "100%"] }}
                   transition={{ repeat: Infinity, duration: 2.5, ease: "linear" }}
                 />
-                {/* Bottom gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/25 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                {/* Bottom vignette */}
+                <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
               </motion.div>
 
-              {/* Badge */}
+              {/* Available for hire badge */}
               <motion.div
-                className="absolute -bottom-2 -right-2 w-20 h-20 bg-card border border-border rounded-xl flex items-center justify-center group-hover:border-primary/60 group-hover:shadow-lg group-hover:shadow-primary/20 transition-all duration-500"
-                whileHover={{ rotate: 12, scale: 1.15 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                className="absolute -bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-1.5 rounded-full bg-card/90 border border-border backdrop-blur-sm group-hover:border-primary/50 transition-all duration-500"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8, duration: 0.5 }}
               >
-                <span className="font-mono text-primary text-xs text-center leading-tight">
-                  Cyber<br />Sec
-                </span>
+                <motion.span
+                  className="w-2.5 h-2.5 rounded-full bg-green-500"
+                  animate={{ scale: [1, 1.3, 1], opacity: [1, 0.6, 1] }}
+                  transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                />
+                <span className="font-mono text-xs text-foreground tracking-wide">Available for hire</span>
               </motion.div>
             </div>
           </motion.div>
