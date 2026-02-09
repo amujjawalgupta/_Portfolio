@@ -1,15 +1,8 @@
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { ExternalLink, Shield, Terminal, Code2 } from "lucide-react";
 import profileImg from "@/assets/profile.jpg";
 import heroBg from "@/assets/hero-bg.jpg";
 import ScrollDownIndicator from "./ScrollDownIndicator";
-
-const roles = [
-  { text: "Cybersecurity Enthusiast", color: "text-primary" },
-  { text: "Backend Developer", color: "text-foreground font-medium" },
-  { text: "Security Researcher", color: "text-primary" },
-];
 
 const floatingIcons = [
   { icon: Shield, x: "10%", y: "20%", delay: 0, size: 20 },
@@ -19,15 +12,6 @@ const floatingIcons = [
 ];
 
 const Hero = () => {
-  const [roleIndex, setRoleIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setRoleIndex((prev) => (prev + 1) % roles.length);
-    }, 2500);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <section
       id="home"
@@ -76,23 +60,12 @@ const Hero = () => {
               Hi, I'm{" "}
               <span className="text-gradient glow-text">Ujjawal Gupta</span>
             </h1>
-            <p className="text-lg text-muted-foreground mb-6 max-w-xl flex items-center gap-2 justify-center lg:justify-start flex-wrap">
-              <span className="text-foreground font-medium">Computer Science Student</span>
-              <span>|</span>
-              <span className="inline-block h-7 relative overflow-hidden min-w-[220px]">
-                <AnimatePresence mode="wait">
-                  <motion.span
-                    key={roleIndex}
-                    className={`absolute left-0 ${roles[roleIndex].color}`}
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: -20, opacity: 0 }}
-                    transition={{ duration: 0.4, ease: "easeInOut" }}
-                  >
-                    {roles[roleIndex].text}
-                  </motion.span>
-                </AnimatePresence>
-              </span>
+            <p className="text-lg text-muted-foreground mb-6 max-w-xl">
+              <span className="text-foreground font-medium">Computer Science Student</span>{" "}
+              |{" "}
+              <span className="text-primary">Cybersecurity Enthusiast</span>{" "}
+              |{" "}
+              <span className="text-foreground font-medium">Backend Developer</span>
             </p>
             <p className="text-muted-foreground mb-8 max-w-lg leading-relaxed">
               Computer Science student with a passion for cybersecurity and software development. Strong foundation in networking and security fundamentals. Focused on backend development, modern JavaScript patterns, and penetration testing.
@@ -121,52 +94,33 @@ const Hero = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
           >
             <div className="relative group cursor-pointer">
-              {/* Outer rotating ring */}
+              {/* Animated ring */}
               <motion.div
-                className="absolute -inset-4 rounded-full border-2 border-dashed border-primary/20 group-hover:border-primary/50 transition-colors duration-700"
+                className="absolute -inset-3 rounded-full border-2 border-dashed border-primary/30 group-hover:border-primary/60 transition-colors duration-500"
                 animate={{ rotate: 360 }}
-                transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
+                transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
               />
-              {/* Inner counter-rotating ring */}
-              <motion.div
-                className="absolute -inset-1.5 rounded-full border border-primary/10 group-hover:border-primary/40 transition-colors duration-700"
-                animate={{ rotate: -360 }}
-                transition={{ repeat: Infinity, duration: 18, ease: "linear" }}
-              />
-              {/* Glow pulse */}
-              <motion.div
-                className="absolute -inset-2 rounded-full bg-primary/0 group-hover:bg-primary/15 blur-2xl transition-all duration-700"
-                animate={{ scale: [1, 1.05, 1] }}
-                transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-              />
+              {/* Glow pulse on hover */}
+              <div className="absolute -inset-1 rounded-full bg-primary/0 group-hover:bg-primary/10 blur-xl transition-all duration-500" />
 
               <motion.div
-                className="w-64 h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden border-2 border-primary/30 group-hover:border-primary/80 shadow-lg group-hover:shadow-primary/20 transition-all duration-700 relative"
-                whileHover={{ scale: 1.06, rotate: 2 }}
-                transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                className="w-64 h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden border-2 border-primary/30 group-hover:border-primary/70 transition-all duration-500 relative"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
-                <motion.img
+                <img
                   src={profileImg}
                   alt="Ujjawal Gupta"
-                  className="w-full h-full object-cover"
-                  whileHover={{ scale: 1.15 }}
-                  transition={{ duration: 0.8, ease: "easeOut" }}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-                {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                {/* Scanline effect */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent opacity-0 group-hover:opacity-100 pointer-events-none"
-                  animate={{ y: ["-100%", "100%"] }}
-                  transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
-                />
+                {/* Overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </motion.div>
 
               {/* Badge */}
               <motion.div
-                className="absolute -bottom-2 -right-2 w-20 h-20 bg-card border border-border rounded-xl flex items-center justify-center group-hover:border-primary/50 group-hover:shadow-lg group-hover:shadow-primary/10 transition-all duration-500"
-                whileHover={{ rotate: 12, scale: 1.15 }}
-                transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                className="absolute -bottom-2 -right-2 w-20 h-20 bg-card border border-border rounded-xl flex items-center justify-center group-hover:border-primary/50 transition-colors duration-300"
+                whileHover={{ rotate: 12, scale: 1.1 }}
               >
                 <span className="font-mono text-primary text-xs text-center leading-tight">
                   Cyber<br />Sec
